@@ -13,7 +13,7 @@ type Employee = {
 export default function RequestPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [employeeId, setEmployeeId] = useState("");
-  const [location, setLocation] = useState("Plainview");
+  const [location, setLocation] = useState("");
   const [quantity, setQuantity] = useState(1);
   const [partNumber, setPartNumber] = useState("");
   const [description, setDescription] = useState("");
