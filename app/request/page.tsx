@@ -1,6 +1,6 @@
-import Image from "next/image";
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import Link from "next/link";
