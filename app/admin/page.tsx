@@ -32,6 +32,7 @@ export default function AdminPage() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+  const [hideClosed, setHideClosed] = useState(true);
 
   async function loadRequests() {
     setLoading(true);
@@ -78,9 +79,19 @@ export default function AdminPage() {
         {!loading && requests.length === 0 && (
           <div className="bg-white rounded-xl p-4 shadow">No requests yet.</div>
         )}
-
+        
+<label className="flex items-center gap-2 font-medium">
+  <input
+    type="checkbox"
+    checked={hideClosed}
+    onChange={(e) => setHideClosed(e.target.checked)}
+  />
+  Hide Closed Requests
+</label>
         <div className="grid gap-4">
-          {requests.map((r) => (
+     {requests
+  .filter((r) => !hideClosed || r.status !== "closed")
+  .map((r) => (
             <div key={r.id} className="bg-white rounded-2xl shadow p-4 space-y-3">
               <div className="flex flex-wrap justify-between gap-3">
                 <div>
