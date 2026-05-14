@@ -1,3 +1,4 @@
+import Image from "next/image";
 "use client";
 
 import { useEffect, useState } from "react";
@@ -139,6 +140,16 @@ if (photo) {
   return (
     <main className="min-h-screen p-4">
       <form onSubmit={submitRequest} className="max-w-xl mx-auto bg-white rounded-2xl shadow p-5 space-y-4">
+        <div className="flex justify-center mb-6">
+  <Image
+    src="/lowery-logo.jpeg"
+    alt="Lowery Logo"
+    width={220}
+    height={120}
+    className="rounded-2xl"
+    priority
+  />
+</div>
         <div>
           <h1 className="text-3xl font-bold">Request a Part</h1>
           <p className="text-gray-600">Keep it simple. Add a photo feature comes next.</p>
