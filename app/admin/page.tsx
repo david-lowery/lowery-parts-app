@@ -31,6 +31,7 @@ function statusLabel(s: string) {
 export default function AdminPage() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
 
   async function loadRequests() {
     setLoading(true);
@@ -99,12 +100,14 @@ export default function AdminPage() {
                   {r.machine_customer_job && <div className="text-gray-600">Job: {r.machine_customer_job}</div>}
                   <div className="text-gray-600">Urgency: {statusLabel(r.urgency)}</div>
                 </div>
-                {r.photo_url && (
-  <img
-    src={r.photo_url}
-    alt="Request photo"
-    className="mt-4 rounded-xl border max-h-64 object-contain"
-  />
+  {r.photo_url && (
+  <button onClick={() => setSelectedPhoto(r.photo_url)} className="mt-4">
+    <img
+      src={r.photo_url}
+      alt="Request photo"
+      className="rounded-xl border max-h-64 object-contain cursor-pointer hover:opacity-80"
+    />
+  </button>
 )}
 
                 <div className="rounded-xl bg-gray-50 p-3 space-y-2">
@@ -149,5 +152,17 @@ export default function AdminPage() {
         </div>
       </div>
     </main>
+    {selectedPhoto && (
+  <div
+    className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
+    onClick={() => setSelectedPhoto(null)}
+  >
+    <img
+      src={selectedPhoto}
+      alt="Full size"
+      className="max-w-full max-h-full rounded-xl"
+    />
+  </div>
+)}
   );
 }
