@@ -98,6 +98,13 @@ export default function AdminPage() {
                   {r.machine_customer_job && <div className="text-gray-600">Job: {r.machine_customer_job}</div>}
                   <div className="text-gray-600">Urgency: {statusLabel(r.urgency)}</div>
                 </div>
+                {r.photo_url && (
+  <img
+    src={r.photo_url}
+    alt="Request photo"
+    className="mt-4 rounded-xl border max-h-64 object-contain"
+  />
+)}
 
                 <div className="rounded-xl bg-gray-50 p-3 space-y-2">
                   <label className="block">
