@@ -115,13 +115,27 @@ export default function AdminPage() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-2">
-                <button onClick={() => updateStatus(r.id, "needs_research")} className="rounded-xl border px-3 py-2">Needs Research</button>
-                <button onClick={() => updateStatus(r.id, "approved")} className="rounded-xl border px-3 py-2">Approve</button>
-                <button onClick={() => updateStatus(r.id, "ordered")} className="rounded-xl bg-black text-white px-3 py-2">Ordered</button>
-                <button onClick={() => updateStatus(r.id, "received")} className="rounded-xl border px-3 py-2">Received</button>
-                <button onClick={() => updateStatus(r.id, "closed")} className="rounded-xl border px-3 py-2">Close</button>
-              </div>
+<div className="flex flex-wrap gap-2">
+  {[
+    ["needs_research", "Needs Research"],
+    ["approved", "Approve"],
+    ["ordered", "Ordered"],
+    ["received", "Received"],
+    ["closed", "Close"],
+  ].map(([status, label]) => (
+    <button
+      key={status}
+      onClick={() => updateStatus(r.id, status)}
+      className={
+        r.status === status
+          ? "rounded-xl bg-black text-white px-3 py-2"
+          : "rounded-xl border px-3 py-2"
+      }
+    >
+      {label}
+    </button>
+  ))}
+</div>
             </div>
           ))}
         </div>
