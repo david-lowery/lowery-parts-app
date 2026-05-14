@@ -62,7 +62,8 @@ export default function AdminPage() {
     await supabase.from("part_requests").update({ [field]: value || null, updated_at: new Date().toISOString() }).eq("id", id);
   }
 
-  return (
+ return (
+  <>
     <main className="min-h-screen p-4">
       <div className="max-w-6xl mx-auto space-y-4">
         <div className="flex items-center justify-between gap-4">
@@ -152,6 +153,8 @@ export default function AdminPage() {
         </div>
       </div>
     </main>
+    
+<>
     {selectedPhoto && (
   <div
     className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
@@ -164,5 +167,6 @@ export default function AdminPage() {
     />
   </div>
 )}
+  </>
   );
 }
