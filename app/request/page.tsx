@@ -20,6 +20,7 @@ export default function RequestPage() {
   const [machineJob, setMachineJob] = useState("");
   const [urgency, setUrgency] = useState("normal");
   const [notes, setNotes] = useState("");
+  const [photo, setPhoto] = useState<File | null>(null);
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -60,6 +61,29 @@ export default function RequestPage() {
 
     setSubmitting(true);
 
+    let photoUrl = "";
+
+if (photo) {
+  const fileExt = photo.name.split(".").pop();
+  const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
+
+  const { error: uploadError } = await supabase.storage
+    .from("part-request-photos")
+    .upload(fileName, photo);
+
+  if (uploadError) {
+    setError(uploadError.message);
+    setSubmitting(false);
+    return;
+  }
+
+  const { data } = supabase.storage
+    .from("part-request-photos")
+    .getPublicUrl(fileName);
+
+  photoUrl = data.publicUrl;
+}
+
     const { error } = await supabase.from("part_requests").insert({
       employee_id: employee.id,
       employee_name_snapshot: employee.name,
@@ -70,6 +94,7 @@ export default function RequestPage() {
       machine_customer_job: machineJob.trim() || null,
       urgency,
       employee_notes: notes.trim() || null,
+      photo_url: photoUrl || null,
       status: "new",
     });
 
@@ -184,6 +209,16 @@ export default function RequestPage() {
           <textarea value={notes} onChange={(e) => setNotes(e.target.value)} placeholder="Optional" className="mt-1 w-full rounded-xl border p-4 text-lg" />
         </label>
 
+        <label className="block">
+  <span className="font-semibold">Photo</span>
+
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => setPhoto(e.target.files?.[0] || null)}
+    className="mt-1 w-full rounded-xl border p-3 text-lg"
+  />
+</label>
         <button disabled={submitting} className="w-full rounded-xl bg-black text-white py-4 text-lg font-semibold disabled:opacity-60">
           {submitting ? "Submitting..." : "Submit Request"}
         </button>
