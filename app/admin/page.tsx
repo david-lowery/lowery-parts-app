@@ -16,6 +16,7 @@ type Request = {
   urgency: string;
   status: string;
   admin_notes: string | null;
+  photo_url: string | null;
   vendor: string | null;
   order_reference: string | null;
   created_at: string;
