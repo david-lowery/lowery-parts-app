@@ -170,7 +170,7 @@ if (photo) {
             <option value="">Choose name</option>
             {employees.map((e) => (
               <option key={e.id} value={e.id}>
-                {e.name} — {e.location}
+                {e.name}
               </option>
             ))}
           </select>
