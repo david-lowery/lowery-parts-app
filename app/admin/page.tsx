@@ -30,13 +30,11 @@ function statusLabel(s: string) {
 
 function urgencyColor(u: string) {
   switch (u?.toLowerCase()) {
-    case "emergency":
+    case "down machine":
       return "bg-red-100 text-red-700";
-    case "high":
+    case "rush":
       return "bg-orange-100 text-orange-700";
-    case "medium":
-      return "bg-yellow-100 text-yellow-700";
-    case "low":
+    case "normal":
       return "bg-green-100 text-green-700";
     default:
       return "bg-gray-100 text-gray-700";
