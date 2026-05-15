@@ -99,6 +99,13 @@ export default function AdminPage() {
     await supabase.from("part_requests").update({ [field]: value || null, updated_at: new Date().toISOString() }).eq("id", id);
   }
 
+  async function deleteRequest(id: string) {
+  if (!confirm("Delete this request? This cannot be undone.")) return;
+
+  await supabase.from("part_requests").delete().eq("id", id);
+  loadRequests();
+}
+
  return (
 
     <main className="min-h-screen p-4">
@@ -233,7 +240,14 @@ export default function AdminPage() {
             </div>
           ))}
         </div>
-      </div>
+        
+<button
+  onClick={() => deleteRequest(r.id)}
+  className="rounded-xl border border-red-300 px-3 py-2 text-red-700"
+>
+  Delete
+</button>
+        
  {selectedPhoto && (
   <div
     className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
