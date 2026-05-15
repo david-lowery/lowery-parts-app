@@ -28,10 +28,6 @@ function statusLabel(s: string) {
   return s.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-function statusLabel(s: string) {
-  return s.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 function urgencyColor(u: string) {
   switch (u?.toLowerCase()) {
     case "emergency":
