@@ -44,13 +44,6 @@ export default function HomePage() {
             My Requests
           </Link>
 
-          <Link
-            href="/admin"
-            className="rounded-2xl border text-center p-4 font-semibold bg-gray-100"
-          >
-            Admin Dashboard
-          </Link>
-
         </div>
 
       </div>
