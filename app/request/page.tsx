@@ -243,6 +243,7 @@ if (photo) {
           {submitting ? "Submitting..." : "Submit Request"}
         </button>
       </form>
-    </main>
-  );
+   </main>
+</>
+);
 }
