@@ -152,7 +152,9 @@ export default function AdminPage() {
                   <div>Part #: {r.submitted_part_number || "Not provided"}</div>
                   <div>{r.description}</div>
                   {r.machine_customer_job && <div className="text-gray-600">Job: {r.machine_customer_job}</div>}
-                <div className={`inline-block rounded-lg px-3 py-1 font-semibold ${urgencyColor(r.urgency)}`}>
+               <div
+  className={`inline-block rounded-lg px-3 py-1 font-semibold ${urgencyColor(r.urgency)}`}
+>
   Urgency: {statusLabel(r.urgency)}
 </div>
                 </div>
