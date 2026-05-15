@@ -152,7 +152,6 @@ if (photo) {
 </div>
         <div>
           <h1 className="text-3xl font-bold">Request a Part</h1>
-          <p className="text-gray-600">Keep it simple. Add a photo feature comes next.</p>
         </div>
 
         {error && <div className="rounded-xl bg-red-50 text-red-700 p-3">{error}</div>}
