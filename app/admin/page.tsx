@@ -101,8 +101,23 @@ export default function AdminPage() {
   Hide Closed Requests
 </label>
         <div className="grid gap-4">
-     {requests
+    {requests
   .filter((r) => !hideClosed || r.status !== "closed")
+  .filter((r) => {
+    const q = search.toLowerCase();
+
+    return (
+      r.employee_name_snapshot?.toLowerCase().includes(q) ||
+      r.location?.toLowerCase().includes(q) ||
+      r.submitted_part_number?.toLowerCase().includes(q) ||
+      r.description?.toLowerCase().includes(q) ||
+      r.machine_customer_job?.toLowerCase().includes(q) ||
+      r.urgency?.toLowerCase().includes(q) ||
+      r.status?.toLowerCase().includes(q) ||
+      r.vendor?.toLowerCase().includes(q) ||
+      r.order_reference?.toLowerCase().includes(q)
+    );
+  })
   .map((r) => (
             <div key={r.id} className="bg-white rounded-2xl shadow p-4 space-y-3">
               <div className="flex flex-wrap justify-between gap-3">
