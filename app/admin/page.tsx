@@ -33,6 +33,7 @@ export default function AdminPage() {
   const [loading, setLoading] = useState(true);
   const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
   const [hideClosed, setHideClosed] = useState(true);
+  const [search, setSearch] = useState("");
 
   async function loadRequests() {
     setLoading(true);
@@ -64,8 +65,19 @@ export default function AdminPage() {
   }
 
  return (
+
     <main className="min-h-screen p-4">
       <div className="max-w-6xl mx-auto space-y-4">
+        
+        <div className="mb-4">
+  <input
+    type="text"
+    placeholder="Search requests..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="w-full rounded-xl border p-4 text-lg"
+  />
+</div>
         <div className="flex items-center justify-between gap-4">
           <div>
             <h1 className="text-3xl font-bold">Admin Dashboard</h1>
