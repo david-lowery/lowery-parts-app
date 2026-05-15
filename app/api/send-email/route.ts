@@ -19,7 +19,7 @@ export async function POST(req: Request) {
     } = body;
 
     const data = await resend.emails.send({
-      from: "Lowery Parts App <onboarding@resend.dev>",
+      from: "Lowery Parts App <parts@parts.lowerydist.com>",
       to: "david@lowerydist.com",
       subject: `New Part Request - ${employeeName}`,
       html: `
