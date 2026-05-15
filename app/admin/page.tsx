@@ -32,10 +32,13 @@ function urgencyColor(u: string) {
   switch (u?.toLowerCase()) {
     case "down machine":
       return "bg-red-100 text-red-700";
-    case "rush":
+
+    case "needed soon":
       return "bg-orange-100 text-orange-700";
-    case "normal":
+
+    case "stock":
       return "bg-green-100 text-green-700";
+
     default:
       return "bg-gray-100 text-gray-700";
   }
