@@ -106,6 +106,23 @@ if (photo) {
       return;
     }
 
+    await fetch("/api/send-email", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    employeeName: emp?.name || "Unknown Employee",
+    location,
+    quantity,
+    partNumber: partNumber.trim() || "Not provided",
+    description: description.trim(),
+    machineJob: machineJob.trim() || "Not provided",
+    urgency,
+    notes: notes.trim() || "None",
+  }),
+});
+    
     setSubmitted(true);
   }
 
