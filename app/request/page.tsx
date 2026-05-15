@@ -112,7 +112,7 @@ if (photo) {
     "Content-Type": "application/json",
   },
   body: JSON.stringify({
-    employeeName: emp?.name || "Unknown Employee",
+  employeeName: employees.find((e) => e.id === employeeId)?.name || "Unknown Employee",
     location,
     quantity,
     partNumber: partNumber.trim() || "Not provided",
