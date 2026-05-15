@@ -36,6 +36,8 @@ export async function POST(req: Request) {
       `,
     });
 
+    console.log("RESEND RESPONSE:", data);
+    
     return NextResponse.json(data);
   } catch (error) {
     console.error(error);
