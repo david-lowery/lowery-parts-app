@@ -138,6 +138,16 @@ if (photo) {
   }
 
   return (
+  <>
+    <div className="mb-4 flex justify-end">
+      <a
+        href="/"
+        className="rounded-2xl border bg-white px-5 py-3 text-lg shadow"
+      >
+        Home
+      </a>
+    </div>
+    
     <main className="min-h-screen p-4">
       <form onSubmit={submitRequest} className="max-w-xl mx-auto bg-white rounded-2xl shadow p-5 space-y-4">
         <div className="flex justify-center mb-6">
