@@ -28,6 +28,25 @@ function statusLabel(s: string) {
   return s.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function statusLabel(s: string) {
+  return s.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function urgencyColor(u: string) {
+  switch (u?.toLowerCase()) {
+    case "emergency":
+      return "bg-red-100 text-red-700";
+    case "high":
+      return "bg-orange-100 text-orange-700";
+    case "medium":
+      return "bg-yellow-100 text-yellow-700";
+    case "low":
+      return "bg-green-100 text-green-700";
+    default:
+      return "bg-gray-100 text-gray-700";
+  }
+}
+
 export default function AdminPage() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
@@ -136,7 +155,9 @@ export default function AdminPage() {
                   <div>Part #: {r.submitted_part_number || "Not provided"}</div>
                   <div>{r.description}</div>
                   {r.machine_customer_job && <div className="text-gray-600">Job: {r.machine_customer_job}</div>}
-                  <div className="text-gray-600">Urgency: {statusLabel(r.urgency)}</div>
+                <div className={`inline-block rounded-lg px-3 py-1 font-semibold ${urgencyColor(r.urgency)}`}>
+  Urgency: {statusLabel(r.urgency)}
+</div>
                 </div>
   {r.photo_url && (
   <button onClick={() => setSelectedPhoto(r.photo_url)} className="mt-4">
