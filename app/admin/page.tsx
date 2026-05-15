@@ -44,6 +44,25 @@ function urgencyColor(u: string) {
   }
 }
 
+function isPossibleDuplicate(current: Request, all: Request[]) {
+  return all.some((r) => {
+    if (r.id === current.id) return false;
+
+    const sameEmployee =
+      r.employee_name_snapshot === current.employee_name_snapshot;
+
+    const samePart =
+      current.submitted_part_number &&
+      r.submitted_part_number === current.submitted_part_number;
+
+    const sameDescription =
+      current.description &&
+      r.description.toLowerCase().trim() === current.description.toLowerCase().trim();
+
+    return sameEmployee && (samePart || sameDescription);
+  });
+}
+
 export default function AdminPage() {
   const [requests, setRequests] = useState<Request[]>([]);
   const [loading, setLoading] = useState(true);
@@ -139,6 +158,12 @@ export default function AdminPage() {
               <div className="flex flex-wrap justify-between gap-3">
                 <div>
                   <div className="text-xl font-bold">{r.employee_name_snapshot || "Unknown Employee"}</div>
+                  
+                  {isPossibleDuplicate(r, requests) && (
+  <div className="mt-1 inline-block rounded-lg bg-yellow-100 px-2 py-1 text-sm font-semibold text-yellow-800">
+    Possible Duplicate
+  </div>
+)}
                   <div className="text-gray-600">{r.location} • Qty {r.quantity} • {new Date(r.created_at).toLocaleString()}</div>
                 </div>
                 <select value={r.status} onChange={(e) => updateStatus(r.id, e.target.value)} className="rounded-xl border p-3 font-semibold">
