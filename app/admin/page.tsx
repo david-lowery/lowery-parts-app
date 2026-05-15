@@ -236,19 +236,18 @@ export default function AdminPage() {
       {label}
     </button>
   ))}
-</div>
-            </div>
-          ))}
-        </div>
-        
-<button
+  <button
   onClick={() => deleteRequest(r.id)}
   className="rounded-xl border border-red-300 px-3 py-2 text-red-700"
 >
   Delete
 </button>
-
-
+  
+</div>
+            </div>
+          ))}
+        </div>
+      
 </div>
 
  {selectedPhoto && (
