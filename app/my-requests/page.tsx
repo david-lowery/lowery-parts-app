@@ -32,6 +32,12 @@ function statusLabel(s: string) {
   return s.replace("_", " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
+function statusColor(s: string) {
+  if (s === "ordered") return "bg-green-500 text-white border-green-700";
+  if (s === "needs_research") return "bg-red-500 text-white border-red-700";
+  return "bg-gray-300 text-black border-gray-500";
+}
+
 export default function MyRequestsPage() {
   const [employees, setEmployees] = useState<Employee[]>([]);
   const [employeeId, setEmployeeId] = useState("");
@@ -136,10 +142,15 @@ export default function MyRequestsPage() {
               className="bg-white rounded-2xl shadow p-4 space-y-3"
             >
               <div className="flex justify-between gap-3 flex-wrap">
-                <div>
-                  <div className="text-xl font-bold">
-                    {statusLabel(r.status)}
-                  </div>
+  <div>
+  <div className="text-xl font-bold">
+    <div
+      className={`inline-block rounded-lg border px-3 py-1 font-semibold ${statusColor(r.status)}`}
+    >
+      {statusLabel(r.status)}
+    </div>
+  </div>
+</div>
 
                   <div className="text-gray-600">
                     {new Date(r.created_at).toLocaleString()}
