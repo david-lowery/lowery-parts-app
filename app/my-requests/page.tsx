@@ -141,26 +141,25 @@ export default function MyRequestsPage() {
               key={r.id}
               className="bg-white rounded-2xl shadow p-4 space-y-3"
             >
-              <div className="flex justify-between gap-3 flex-wrap">
+          <div className="flex justify-between gap-3 flex-wrap">
   <div>
-  <div className="text-xl font-bold">
-    <div
-      className={`inline-block rounded-lg border px-3 py-1 font-semibold ${statusColor(r.status)}`}
-    >
-      {statusLabel(r.status)}
+    <div className="text-xl font-bold">
+      <span
+        className={`inline-block rounded-lg border px-3 py-1 font-semibold ${statusColor(r.status)}`}
+      >
+        {statusLabel(r.status)}
+      </span>
+    </div>
+
+    <div className="text-gray-600">
+      {new Date(r.created_at).toLocaleString()}
     </div>
   </div>
+
+  <div className="rounded-xl bg-gray-100 px-3 py-2 font-semibold">
+    Qty {r.quantity}
+  </div>
 </div>
-
-                  <div className="text-gray-600">
-                    {new Date(r.created_at).toLocaleString()}
-                  </div>
-                </div>
-
-                <div className="rounded-xl bg-gray-100 px-3 py-2 font-semibold">
-                  Qty {r.quantity}
-                </div>
-              </div>
 
               <div className="rounded-xl bg-gray-50 p-3 space-y-1">
                 <div className="font-semibold">Requested</div>
