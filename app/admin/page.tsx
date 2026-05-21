@@ -29,19 +29,10 @@ function statusLabel(s: string) {
 }
 
 function urgencyColor(u: string) {
-  switch (u?.toLowerCase()) {
-    case "down machine":
-      return "bg-red-100 text-red-700";
-
-    case "needed soon":
-      return "bg-orange-100 text-orange-700";
-
-    case "stock":
-      return "bg-green-100 text-green-700";
-
-    default:
-      return "bg-gray-100 text-gray-700";
-  }
+  if (u === "down_machine") return "bg-red-500 text-white border-red-700";
+  if (u === "needed_soon") return "bg-orange-400 text-black border-orange-600";
+  if (u === "normal") return "bg-green-500 text-white border-green-700";
+  return "bg-gray-300 text-black border-gray-500";
 }
 
 function isPossibleDuplicate(current: Request, all: Request[]) {
